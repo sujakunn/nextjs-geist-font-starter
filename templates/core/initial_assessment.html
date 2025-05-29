@@ -1,0 +1,105 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Initial Assessment - MathMinds{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-blue-200 flex flex-col items-center py-10 px-4">
+  <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full">
+    <h1 class="text-3xl font-bold text-blue-700 mb-6 text-center">Initial Assessment</h1>
+    <p class="text-center text-blue-700 mb-8">
+      Silakan kerjakan soal berikut untuk mengukur pemahaman awal Anda dalam matematika.
+    </p>
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label class="block font-semibold text-blue-700 mb-2">1. Berapa hasil dari 5 + 3?</label>
+        <div class="space-y-2">
+          <label class="inline-flex items-center">
+            <input type="radio" name="q1" value="6" class="form-radio text-blue-600" required>
+            <span class="ml-2">6</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q1" value="8" class="form-radio text-blue-600" required>
+            <span class="ml-2">8</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q1" value="9" class="form-radio text-blue-600" required>
+            <span class="ml-2">9</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block font-semibold text-blue-700 mb-2">2. Berapa hasil dari 10 - 4?</label>
+        <div class="space-y-2">
+          <label class="inline-flex items-center">
+            <input type="radio" name="q2" value="6" class="form-radio text-blue-600" required>
+            <span class="ml-2">6</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q2" value="5" class="form-radio text-blue-600" required>
+            <span class="ml-2">5</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q2" value="7" class="form-radio text-blue-600" required>
+            <span class="ml-2">7</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block font-semibold text-blue-700 mb-2">3. Berapa hasil dari 4 x 2?</label>
+        <div class="space-y-2">
+          <label class="inline-flex items-center">
+            <input type="radio" name="q3" value="6" class="form-radio text-blue-600" required>
+            <span class="ml-2">6</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q3" value="8" class="form-radio text-blue-600" required>
+            <span class="ml-2">8</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q3" value="10" class="form-radio text-blue-600" required>
+            <span class="ml-2">10</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block font-semibold text-blue-700 mb-2">4. Berapa hasil dari 12 ÷ 3?</label>
+        <div class="space-y-2">
+          <label class="inline-flex items-center">
+            <input type="radio" name="q4" value="3" class="form-radio text-blue-600" required>
+            <span class="ml-2">3</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q4" value="4" class="form-radio text-blue-600" required>
+            <span class="ml-2">4</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q4" value="6" class="form-radio text-blue-600" required>
+            <span class="ml-2">6</span>
+          </label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block font-semibold text-blue-700 mb-2">5. Berapa hasil dari 7 + 6?</label>
+        <div class="space-y-2">
+          <label class="inline-flex items-center">
+            <input type="radio" name="q5" value="12" class="form-radio text-blue-600" required>
+            <span class="ml-2">12</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q5" value="13" class="form-radio text-blue-600" required>
+            <span class="ml-2">13</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="q5" value="14" class="form-radio text-blue-600" required>
+            <span class="ml-2">14</span>
+          </label>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Submit Assessment</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
