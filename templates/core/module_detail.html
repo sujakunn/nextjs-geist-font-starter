@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ module.title }} - MathMinds{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+  <!-- Navbar -->
+  <nav class="bg-blue-600 px-6 py-4 flex justify-between items-center">
+    <div class="text-white font-semibold text-xl">MathMinds</div>
+    <div class="space-x-4">
+      <a href="{% url 'dashboard' %}" class="text-white hover:underline">Modul</a>
+      <a href="{% url 'logout' %}" class="bg-white text-blue-600 px-4 py-2 rounded shadow hover:bg-gray-100 transition">Logout</a>
+    </div>
+  </nav>
+
+  <div class="max-w-3xl mx-auto py-8 px-4">
+    <h1 class="text-2xl font-bold text-center mb-8">{{ module.title }}</h1>
+    
+    <div class="bg-blue-100 rounded-lg p-6">
+      <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {% for unit in units %}
+        <div class="bg-white rounded p-4 flex items-center">
+          <input type="radio" name="unit" id="unit{{ unit.id }}" value="{{ unit.id }}" class="mr-4">
+          <label for="unit{{ unit.id }}" class="text-gray-700 cursor-pointer flex-grow">Unit {{ forloop.counter }}</label>
+        </div>
+        {% empty %}
+        <div class="text-center text-gray-500">Tidak ada unit yang tersedia.</div>
+        {% endfor %}
+
+        {% if units %}
+        <div class="mt-6 flex justify-between">
+          <a href="{% url 'dashboard' %}" class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition inline-block">
+            Back
+          </a>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition">
+            Start Unit
+          </button>
+        </div>
+        {% endif %}
+      </form>
+     </div>
+   </div>
+
+   <!-- Sample Question Section -->
+   <div class="mt-8 bg-white rounded-lg shadow p-6">
+     <h2 class="text-2xl font-bold text-gray-900 mb-4">Contoh Soal</h2>
+     <p class="mb-4 text-gray-700">{{ sample_question.text }}</p>
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+       <img src="{{ sample_question.image1 }}" alt="Contoh Gambar 1" class="rounded-lg shadow">
+       <img src="{{ sample_question.image2 }}" alt="Contoh Gambar 2" class="rounded-lg shadow">
+     </div>
+   </div>
+ </div>
+ {% endblock %}
