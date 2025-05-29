@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Courses - MathMinds{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 min-h-screen">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="px-4 py-5 sm:px-6">
+            <h1 class="text-3xl font-bold text-gray-900">
+                Mathematics Courses
+            </h1>
+            <p class="mt-1 text-lg text-gray-500">
+                Explore our comprehensive mathematics courses
+            </p>
+        </div>
+
+        <!-- Course Grid -->
+        <div class="mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6">
+            {% for course in courses %}
+            <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <div class="p-6">
+                    <!-- Course Icon -->
+                    <div class="flex items-center justify-center h-24 w-24 rounded-md bg-blue-500 text-white mx-auto">
+                        <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10h-6m-3-3h12M9 17h6"/>
+                        </svg>
+                    </div>
+
+                    <!-- Course Info -->
+                    <div class="mt-4 text-center">
+                        <h3 class="text-xl font-semibold text-gray-900">
+                            {{ course.title }}
+                        </h3>
+                        <p class="mt-3 text-gray-500">
+                            {{ course.description|truncatewords:30 }}
+                        </p>
+                    </div>
+
+                    <!-- Course Stats -->
+                    <div class="mt-6 grid grid-cols-2 gap-4 border-t border-gray-200 pt-4">
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-gray-900">
+                                {{ course.modules.count }}
+                            </span>
+                            <span class="block text-sm text-gray-500">Modules</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-2xl font-bold text-gray-900">
+                                {{ course.modules.all|length }}
+                            </span>
+                            <span class="block text-sm text-gray-500">Units</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="mt-6 text-center">
+                        <a href="{% url 'course_detail' course.id %}" 
+                           class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300">
+                            View Course
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <div class="text-gray-500">
+                    <p class="text-xl">No courses available at the moment.</p>
+                    <p class="mt-2">Please check back later for new courses.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
